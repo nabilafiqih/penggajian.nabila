@@ -1,0 +1,69 @@
+import java.text.DecimalFormat;
+import java.util.Scanner;
+
+class Penggajian
+{
+    String nama, id, bagian;
+    int lembur;
+    double gaji_pokok, upah_lembur, total_gaji;
+    
+    double getgaji_pokok() {
+        if(bagian == "Front-End web") {
+            gaji_pokok = 7000000;
+        }else if(bagian == "Back-End web") {
+            gaji_pokok = 8000000;
+        }else{
+            gaji_pokok = 5000000;
+        }
+        return gaji_pokok;
+    }
+    
+    double getupah_lembur() {
+         if (lembur < 2) {
+             upah_lembur = 300000;
+         }else if (lembur < 4 ) {
+             upah_lembur = 500000;
+            }else {
+                upah_lembur= 700000;
+            }
+            return upah_lembur;
+    }
+    
+    double gettotal_gaji() {
+     total_gaji = gaji_pokok + upah_lembur;
+     return total_gaji;
+    }
+    
+     void cetak () {
+        DecimalFormat df = new DecimalFormat ("##000,000");
+        System.out.println("--------------Detail Karyawan-----------");
+        System.out.println("No : "+ this.id);
+        System.out.println("Nama : "+ this.nama);
+        System.out.println("Bagian : "+ this.bagian);
+        System.out.println("Gaji Pokok : "+ df.format(getgaji_pokok()));
+        System.out.println("Upah Lembur : "+ df.format(getupah_lembur()));
+        System.out.println("Gaji Total : "+ df.format(gettotal_gaji()));
+    }
+}
+
+
+public class MainPenggajian {
+    public static void main (String [] args) {
+        Scanner input = new Scanner(System.in);
+        Penggajian p = new Penggajian ();
+        
+        System.out.print("id karyawan : ");
+        p.id = input.next();
+        
+        System.out.print("nama : ");
+        p.nama = input.next();
+
+        System.out.print("bagian : ");
+        p.bagian = input.next();
+        
+        System.out.print("lembur : ");
+        p.lembur = input.nextInt();
+        
+        p.cetak();
+    }
+}
